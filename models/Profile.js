@@ -47,7 +47,7 @@ const ProfileSchema = new Schema({
         required: true
       },
       from: {
-        type: Data,
+        type: Date,
         required: true
       },
       to: {
@@ -73,7 +73,7 @@ const ProfileSchema = new Schema({
         required: true
       },
       studyfield: {
-        type: Data,
+        type: Date,
         required: true
       },
       to: {
