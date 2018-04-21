@@ -20,16 +20,18 @@ module.exports = function validateProfileInput(data) {
   });
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.email = 'Handle must be between 2 and 40 characters';
+    if (!errors.handle) {
+      errors.handle = 'Handle must be between 2 and 40 characters';
+    }
   }
 
-  if (!isEmpty(data.website)) {
-    siteUrls.forEach(url => {
+  siteUrls.forEach(url => {
+    if (data[url]) {
       if (!Validator.isURL(data[url])) {
         errors[url] = 'Not a valid URL';
       }
-    });
-  }
+    }
+  });
 
   return {
     errors,
