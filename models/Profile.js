@@ -73,6 +73,10 @@ const ProfileSchema = new Schema({
         required: true
       },
       studyfield: {
+        type: String,
+        required: true
+      },
+      from: {
         type: Date,
         required: true
       },

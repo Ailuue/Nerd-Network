@@ -5,6 +5,8 @@ const passport = require('passport');
 
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
+const validateExperienceInput = require('../../validation/experience');
+const validateEducationInput = require('../../validation/education');
 
 // Load Models
 const Profile = require('../../models/Profile');
@@ -162,6 +164,75 @@ router.post(
         });
       }
     });
+  }
+);
+
+//@route POST api/profile/experience
+//@desc Add experience to profile
+//@access Private
+
+router.post(
+  '/experience',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateExperienceInput(req.body);
+    const fields = [
+      'title',
+      'company',
+      'location',
+      'from',
+      'to',
+      'current',
+      'description'
+    ];
+    // Check Validation
+    if (!isValid) {
+      // Return errors
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        const newExp = {};
+        fields.forEach(field => (newExp[field] = req.body[field]));
+
+        // Add to exp arr
+        profile.experience.unshift(newExp);
+
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.json(err));
+  }
+);
+
+//@route POST api/profile/education
+//@desc Add education to profile
+//@access Private
+
+router.post(
+  '/education',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+    const fields = ['school', 'degree', 'studyfield', 'from', 'to', 'current'];
+
+    // Check Validation
+    if (!isValid) {
+      // Return errors
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        const newEdu = {};
+        fields.forEach(field => (newEdu[field] = req.body[field]));
+
+        // Add to exp arr
+        profile.education.unshift(newEdu);
+
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.json(err));
   }
 );
 
