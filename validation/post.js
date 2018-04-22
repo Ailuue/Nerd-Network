@@ -10,7 +10,7 @@ module.exports = function validateLoginInput(data) {
     errors.text = 'Text field is required';
   }
 
-  if ((!Validator.isLength(data.text), { min: 10, max: 1000 })) {
+  if (!Validator.isLength(data.text, { min: 10, max: 1000 })) {
     errors.text = 'Post must be between 10 and 1000 characters';
   }
 
