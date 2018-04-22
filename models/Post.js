@@ -31,7 +31,7 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
       },
-      test: {
+      text: {
         type: String,
         required: true
       },
