@@ -8,7 +8,11 @@ module.exports = function validateRegisterInput(data) {
   dataFields.forEach(field => {
     data[field] = !isEmpty(data[field]) ? data[field] : '';
     if (Validator.isEmpty(data[field])) {
-      errors[field] = `${field} field is required`;
+      if (field === 'password2') {
+        errors[field] = `You must confirm your password`;
+      } else {
+        errors[field] = `${field} field is required`;
+      }
     }
   });
 
