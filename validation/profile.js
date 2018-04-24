@@ -9,13 +9,14 @@ module.exports = function validateProfileInput(data) {
     'twitter',
     'facebook',
     'linkedin',
-    'instagram'
+    'instagram',
+    'githubprofile'
   ];
-  dataFields = ['handle', 'status', 'skills'];
+  dataFields = ['handle', 'level', 'skills'];
   dataFields.forEach(field => {
     data[field] = !isEmpty(data[field]) ? data[field] : '';
     if (Validator.isEmpty(data[field])) {
-      errors[field] = `${field} field is required`;
+      errors[field] = capitalize(`${field} field is required`);
     }
   });
 
@@ -38,3 +39,13 @@ module.exports = function validateProfileInput(data) {
     isValid: isEmpty(errors)
   };
 };
+
+function capitalize(str) {
+  let firstChar = str.slice(0, 1);
+  firstChar = firstChar.toUpperCase();
+  str = str.split('');
+  str.splice(0, 1);
+  str.unshift(firstChar);
+  str = str.join('');
+  return str;
+}

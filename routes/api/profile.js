@@ -123,7 +123,7 @@ router.post(
       'website',
       'location',
       'bio',
-      'status',
+      'level',
       'githubprofile',
       'youtube',
       'twitter',

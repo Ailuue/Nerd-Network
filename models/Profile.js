@@ -21,7 +21,7 @@ const ProfileSchema = new Schema({
     type: String,
     default: 'Prefer not to say.'
   },
-  status: {
+  level: {
     type: String,
     required: true
   },
