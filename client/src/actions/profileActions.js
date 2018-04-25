@@ -4,7 +4,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_CURRENT_USER
 } from './types';
 
 export const getCurrentProfile = () => dispatch => {
@@ -21,6 +22,30 @@ export const createProfile = (profileData, history) => dispatch => {
     .then(res => history.push('/dashboard'))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
+
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post('/api/profile/experience', expData)
+    .then(res => history.push('/dashboard'))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+export const addEducation = (eduData, history) => dispatch => {
+  axios
+    .post('/api/profile/education', eduData)
+    .then(res => history.push('/dashboard'))
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+export const deleteAccount = () => dispatch => {
+  if (window.confirm('Are you sure? You will be gone forever...')) {
+    axios
+      .delete('/api/profile')
+      .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
+      .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+  }
+};
+
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING

@@ -24,6 +24,10 @@ module.exports = function validateExperienceInput(data) {
     errors.to = 'Please format to YYYY-MM-DD';
   }
 
+  if (data.from && data.to && data.from > data.to) {
+    errors.to = 'To Date must be after From Date';
+  }
+
   return {
     errors,
     isValid: isEmpty(errors)

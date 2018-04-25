@@ -6,9 +6,9 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
-import { createProfile } from '../../actions/profileActions';
+import { createProfile, getCurrentProfile } from '../../actions/profileActions';
 
-class CreateProfile extends Component {
+class UpdateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ class CreateProfile extends Component {
       location: '',
       level: '',
       skills: '',
-      bio: '',
+      bio: "I'm a proud nerd!",
       twitter: '',
       facebook: '',
       linkedin: '',
@@ -30,9 +30,26 @@ class CreateProfile extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    //Check for existing values and replace (EDIT MODE)
+    if (
+      nextProps.profile.profile &&
+      Object.keys(nextProps.profile.profile).length > 0
+    ) {
+      const { skills, social, ...profile } = nextProps.profile.profile;
+      this.setState(prevState => ({
+        ...prevState,
+        ...profile,
+        ...social,
+        skills: skills.join(',')
+      }));
     }
   }
 
@@ -66,6 +83,20 @@ class CreateProfile extends Component {
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  checkEditTitle = () => {
+    if (this.props.location.state) {
+      return 'Edit ';
+    } else {
+      return 'Create ';
+    }
+  };
+
+  checkEditMessage = () => {
+    if (!this.props.location.state) {
+      return <p className="lead text-center">Tell us about your nerdy self!</p>;
+    }
   };
 
   render() {
@@ -147,8 +178,11 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Nerd Profile</h1>
-              <p className="lead text-center">Tell us about your nerdy self!</p>
+              <h1 className="display-4 text-center">
+                {this.checkEditTitle()}
+                Nerd Profile
+              </h1>
+              {this.checkEditMessage()}
               <small className="d-block pb-3">* are required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -234,7 +268,9 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+UpdateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -244,4 +280,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile })(CreateProfile);
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  UpdateProfile
+);

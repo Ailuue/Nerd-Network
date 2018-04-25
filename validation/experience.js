@@ -4,7 +4,7 @@ const isEmpty = require('./is-empty');
 module.exports = function validateExperienceInput(data) {
   let errors = {};
 
-  dataFields = ['title', 'company', 'from'];
+  dataFields = ['title', 'company', 'location', 'from'];
   dataFields.forEach(field => {
     data[field] = !isEmpty(data[field]) ? data[field] : '';
     if (Validator.isEmpty(data[field])) {
