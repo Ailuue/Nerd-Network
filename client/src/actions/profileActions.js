@@ -17,6 +17,14 @@ export const getCurrentProfile = () => dispatch => {
     .catch(err => dispatch({ type: GET_PROFILE, payload: {} }));
 };
 
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+    .catch(err => dispatch({ type: GET_PROFILE, payload: null }));
+};
+
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -28,7 +36,10 @@ export const getProfiles = () => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/dashboard'))
+    .then(res => {
+      history.push('/dashboard');
+      return dispatch({ type: GET_ERRORS, payload: {} });
+    })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 

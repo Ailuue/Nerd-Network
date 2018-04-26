@@ -117,14 +117,17 @@ router.post(
     }
     //Get fields
     const profileFields = {};
-    const fields = [
+    const coreFields = [
       'handle',
       'company',
       'website',
       'location',
       'bio',
       'level',
-      'githubprofile',
+      'githubprofile'
+    ];
+
+    const socialFields = [
       'youtube',
       'twitter',
       'facebook',
@@ -133,8 +136,18 @@ router.post(
     ];
 
     profileFields.user = req.user.id;
-    fields.forEach(field => {
+    coreFields.forEach(field => {
       if (req.body[field]) profileFields[field] = req.body[field];
+    });
+
+    profileFields.social = {};
+    socialFields.forEach(field => {
+      if (req.body[field])
+        profileFields.social[field] =
+          req.body[field].indexOf('http://') !== 0 &&
+          req.body[field].indexOf('https://') !== 0
+            ? 'http://' + req.body[field]
+            : req.body[field];
     });
 
     if (typeof req.body.skills !== 'undefined') {

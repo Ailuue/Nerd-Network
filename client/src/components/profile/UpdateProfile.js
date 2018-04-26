@@ -63,13 +63,13 @@ class UpdateProfile extends Component {
     event.preventDefault();
 
     const profileData = {
-      handle: this.state.handle,
+      handle: this.state.handle.toLowerCase(),
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
       level: this.state.level,
       skills: this.state.skills,
-      githubusername: this.state.githubusername,
+      githubprofile: this.state.githubprofile,
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,

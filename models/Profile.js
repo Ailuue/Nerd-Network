@@ -106,7 +106,10 @@ const ProfileSchema = new Schema({
       type: String
     },
     youtube: {
-      instagram: String
+      type: String
+    },
+    instagram: {
+      type: String
     }
   },
   date: {
