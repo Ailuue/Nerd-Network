@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import ProfileActions from '../profile/ProfileActions';
 import Experience from './Experience';
+import Education from './Education';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 
 class Dashboard extends Component {
@@ -34,6 +35,10 @@ class Dashboard extends Component {
             </p>
             <ProfileActions />
             <Experience experience={profile.experience} />
+            {''}
+            <hr />
+            {''}
+            <Education education={profile.education} />
             <div style={{ marginBottom: '60px' }}>
               <button
                 className="btn btn-danger"
