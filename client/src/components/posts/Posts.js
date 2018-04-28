@@ -16,13 +16,10 @@ class Posts extends Component {
     const { posts, loading } = this.props.posts;
     let postContent = <Spinner />;
 
-    if (posts !== null) {
+    if (posts !== null || !loading) {
       postContent = <PostFeed posts={posts} />;
     }
 
-    const postList = posts.map(post => {
-      return <p>{post.name}</p>;
-    });
     return (
       <div className="posts">
         <div className="container">
