@@ -137,7 +137,17 @@ router.post(
 
     profileFields.user = req.user.id;
     coreFields.forEach(field => {
-      if (req.body[field]) profileFields[field] = req.body[field];
+      if (field === 'website' || field === 'githubprofile') {
+        if (req.body[field]) {
+          profileFields[field] =
+            req.body[field].indexOf('http://') !== 0 &&
+            req.body[field].indexOf('https://') !== 0
+              ? 'http://' + req.body[field]
+              : req.body[field];
+        }
+      } else {
+        if (req.body[field]) profileFields[field] = req.body[field];
+      }
     });
 
     profileFields.social = {};

@@ -62,27 +62,36 @@ class UpdateProfile extends Component {
   onSubmit = event => {
     event.preventDefault();
 
-    const profileData = {
-      handle: this.state.handle.toLowerCase(),
-      company: this.state.company,
-      website: this.state.website,
-      location: this.state.location,
-      level: this.state.level,
-      skills: this.state.skills,
-      githubprofile: this.state.githubprofile,
-      bio: this.state.bio,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
-      instagram: this.state.instagram
-    };
+    const profileData = {};
+
+    Object.keys(this.state).forEach(value => {
+      if (value === 'handle') {
+        profileData.handle = this.state.handle.toLowerCase();
+      } else {
+        profileData[value] = this.state[value];
+      }
+    });
 
     this.props.createProfile(profileData, this.props.history);
   };
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  checkEditButton = () => {
+    if (this.props.location.state) {
+      return (
+        <button
+          className="btn btn-light"
+          onClick={() => this.props.history.push('/dashboard')}
+        >
+          Go Back
+        </button>
+      );
+    } else {
+      return null;
+    }
   };
 
   checkEditTitle = () => {
@@ -178,6 +187,7 @@ class UpdateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              {this.checkEditButton()}
               <h1 className="display-4 text-center">
                 {this.checkEditTitle()}
                 Nerd Profile

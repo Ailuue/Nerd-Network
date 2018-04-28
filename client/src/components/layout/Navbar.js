@@ -13,9 +13,22 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { profile } = this.props.profile;
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+        {profile ? (
+          <li className="nav-item">
+            <Link to={`/profile/${profile.handle}`} className="nav-link">
+              Profile
+            </Link>
+          </li>
+        ) : null}
+        <li className="nav-item">
+          <Link to="/dashboard" className="nav-link">
+            Dashboard
+          </Link>
+        </li>
         <li className="nav-item">
           <a href="" onClick={this.onLogoutClick} className="nav-link">
             <img
@@ -45,6 +58,14 @@ class Navbar extends Component {
       </ul>
     );
 
+    const posts = (
+      <li className="nav-item">
+        <Link className="nav-link" to="/posts">
+          Posts
+        </Link>
+      </li>
+    );
+
     return (
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
@@ -69,6 +90,7 @@ class Navbar extends Component {
                     Fellow Nerds
                   </Link>
                 </li>
+                {isAuthenticated ? posts : null}
               </ul>
 
               {isAuthenticated ? authLinks : guestLinks}
@@ -83,11 +105,13 @@ class Navbar extends Component {
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(

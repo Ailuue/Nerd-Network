@@ -20,7 +20,9 @@ import Profiles from './components/profile/Profiles';
 import UpdateProfile from './components/profile/UpdateProfile';
 import AddExperience from './components/profile/AddExperience';
 import AddEducation from './components/profile/AddEducation';
+import Posts from './components/posts/Posts';
 import PrivateRoute from './components/common/PrivateRoute';
+import NotFound from './components/common/NotFound';
 import './App.css';
 
 const middleware = [thunk];
@@ -83,6 +85,10 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
+              <Switch>
+                <PrivateRoute exact path="/posts" component={Posts} />
+              </Switch>
+              <Route exact path="/not_found" component={NotFound} />
             </div>
             <Footer />
           </div>
