@@ -9,8 +9,7 @@ export const registerUser = (userData, history) => dispatch => {
     .then(res => {
       history.push('/login');
       return dispatch({
-        type: CLEAR_ERRORS,
-        payload: {}
+        type: CLEAR_ERRORS
       });
     })
     .catch(err => {

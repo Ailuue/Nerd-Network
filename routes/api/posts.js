@@ -84,7 +84,7 @@ router.delete(
 //@desc Like post
 //@access Private
 
-router.delete(
+router.post(
   '/like/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -96,7 +96,7 @@ router.delete(
         ) {
           return res
             .status(400)
-            .json({ alreadyliked: 'User already like this post' });
+            .json({ alreadyliked: 'User already liked this post' });
         }
 
         post.likes.unshift({ user: req.user.id });
@@ -111,7 +111,7 @@ router.delete(
 //@desc Unlike post
 //@access Private
 
-router.delete(
+router.post(
   '/unlike/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
