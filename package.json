@@ -1,7 +1,7 @@
 {
   "name": "nerd-network",
   "version": "1.0.0",
-  "description": "Social Network for nerds",
+  "description": "Social network for nerds",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
