@@ -18,8 +18,7 @@ const ProfileSchema = new Schema({
     type: String
   },
   location: {
-    type: String,
-    default: 'Prefer not to say.'
+    type: String
   },
   level: {
     type: String,

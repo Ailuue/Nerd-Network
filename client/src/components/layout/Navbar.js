@@ -61,7 +61,7 @@ class Navbar extends Component {
     const posts = (
       <li className="nav-item">
         <Link className="nav-link" to="/posts">
-          Posts
+          The Conversation
         </Link>
       </li>
     );
