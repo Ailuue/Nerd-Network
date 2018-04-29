@@ -9,7 +9,7 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
 import rootReducer from './reducers';
-import Navbar from './components/layout/Navbar';
+import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import Landing from './components/Landing';
 import Register from './components/auth/Register';
@@ -55,7 +55,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
+            <NavBar />
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register} />
