@@ -8,7 +8,7 @@ img {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  margin-top: 0px;
+  margin-top: -20px;
   margin-bottom: -50px;
 }
 
@@ -36,4 +36,8 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.nav-bar {
+  margin-bottom: 20px;
 }

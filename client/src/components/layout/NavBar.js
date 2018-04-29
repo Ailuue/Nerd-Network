@@ -104,7 +104,7 @@ class NavBar extends Component {
     );
 
     return (
-      <nav>
+      <nav className="nav-bar">
         <Navbar color="dark" dark expand="md">
           <NavbarBrand>
             <Link className="navbar-brand" to="/">
