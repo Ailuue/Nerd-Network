@@ -161,7 +161,9 @@ router.post(
     });
 
     if (typeof req.body.skills !== 'undefined') {
-      profileFields.skills = req.body.skills.replace(/ /g, '').split(',');
+      profileFields.skills = req.body.skills
+        .replace(/ , |, |, /g, ',')
+        .split(',');
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
