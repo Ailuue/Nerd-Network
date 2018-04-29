@@ -1,6 +1,9 @@
 {
   "name": "nerd-network",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.11.1"
+  },
   "description": "Social network for nerds",
   "main": "server.js",
   "scripts": {
