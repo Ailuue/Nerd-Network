@@ -104,7 +104,7 @@ class NavBar extends Component {
     );
 
     return (
-      <div>
+      <nav>
         <Navbar color="dark" dark expand="md">
           <NavbarBrand>
             <Link className="navbar-brand" to="/">
@@ -113,7 +113,7 @@ class NavBar extends Component {
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="mr-auto" navbar>
+            <Nav className="mr-auto" navbar nav>
               <NavItem>
                 <NavLink>
                   <Link className="nav-link" to="/profiles">
@@ -127,7 +127,7 @@ class NavBar extends Component {
             {isAuthenticated ? authLinks : guestLinks}
           </Collapse>
         </Navbar>
-      </div>
+      </nav>
     );
   }
 }
