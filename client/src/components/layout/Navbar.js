@@ -73,28 +73,18 @@ class Navbar extends Component {
             <Link className="navbar-brand" to="/">
               Nerd Network
             </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#mobile-nav"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
 
-            <div className="collapse navbar-collapse" id="mobile-nav">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profiles">
-                    {' '}
-                    Fellow Nerds
-                  </Link>
-                </li>
-                {isAuthenticated ? posts : null}
-              </ul>
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/profiles">
+                  {' '}
+                  Fellow Nerds
+                </Link>
+              </li>
+              {isAuthenticated ? posts : null}
+            </ul>
 
-              {isAuthenticated ? authLinks : guestLinks}
-            </div>
+            {isAuthenticated ? authLinks : guestLinks}
           </div>
         </nav>
       </div>

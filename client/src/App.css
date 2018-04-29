@@ -37,3 +37,7 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.nav-link.disabled {
+  pointer-events: none;
+}

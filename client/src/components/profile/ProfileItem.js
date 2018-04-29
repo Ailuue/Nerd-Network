@@ -20,7 +20,7 @@ class ProfileItem extends Component {
           <div className="col-log-6 col-md-4 col-8">
             <h3>{profile.user.name}</h3>
             <p>
-              {profile.level}{' '}
+              {profile.level} Nerd{' '}
               {isEmpty(profile.company) ? null : (
                 <span>at {profile.company}</span>
               )}
