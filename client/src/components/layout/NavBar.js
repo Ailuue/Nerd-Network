@@ -42,33 +42,27 @@ class NavBar extends Component {
 
     const authLinks = (
       <Nav className="ml-auto" navbar>
-        {profile ? (
+        {profile && Object.keys(profile).length > 0 ? (
           <NavItem>
-            <NavLink>
-              <Link to={`/profile/${profile.handle}`} className="nav-link">
-                Profile
-              </Link>
+            <NavLink tag={Link} to={`/profile/${profile.handle}`}>
+              Profile
             </NavLink>
           </NavItem>
         ) : null}
         <NavItem>
-          <NavLink>
-            <Link to="/dashboard" className="nav-link">
-              Dashboard
-            </Link>
+          <NavLink tag={Link} to="/dashboard">
+            Dashboard
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink>
-            <a href="" onClick={this.onLogoutClick} className="nav-link">
-              <img
-                src={user.avatar}
-                alt={user.name}
-                title="Gravatar is required to see an image"
-                style={{ width: '25px', marginRight: '5px' }}
-              />{' '}
-              Logout
-            </a>
+          <NavLink onClick={this.onLogoutClick}>
+            <img
+              src={user.avatar}
+              alt={user.name}
+              title="Gravatar is required to see an image"
+              style={{ width: '25px', marginRight: '5px' }}
+            />
+            Logout
           </NavLink>
         </NavItem>
       </Nav>
@@ -77,17 +71,13 @@ class NavBar extends Component {
     const guestLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink>
-            <Link className="nav-link" to="/register">
-              Sign Up
-            </Link>
+          <NavLink tag={Link} to="/register">
+            Sign Up
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink>
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
+          <NavLink tag={Link} to="/login">
+            Login
           </NavLink>
         </NavItem>
       </Nav>
@@ -95,10 +85,8 @@ class NavBar extends Component {
 
     const posts = (
       <NavItem>
-        <NavLink>
-          <Link className="nav-link" to="/posts">
-            The Conversation
-          </Link>
+        <NavLink tag={Link} to="/posts">
+          The Conversation
         </NavLink>
       </NavItem>
     );
@@ -106,21 +94,14 @@ class NavBar extends Component {
     return (
       <nav className="nav-bar">
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand>
-            <Link className="navbar-brand" to="/">
-              Nerd Network
-            </Link>
+          <NavbarBrand tag={Link} to="/">
+            Nerd Network
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar nav>
               <NavItem>
-                <NavLink>
-                  <Link className="nav-link" to="/profiles">
-                    {' '}
-                    Fellow Nerds
-                  </Link>
-                </NavLink>
+                <NavLink to="/profiles">Fellow Nerds</NavLink>
               </NavItem>
               {isAuthenticated ? posts : null}
             </Nav>
