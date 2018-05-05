@@ -21,16 +21,16 @@ To run the app:
 
 #### Authenticated
 
-*Create an account at Sign-up.
-*Login with the email and password used.
-*Make a profile with your preferred credentials.
-*Post and comment in "The Conversation"
+* Create an account at Sign-up.
+* Login with the email and password used.
+* Make a profile with your preferred credentials.
+* Post and comment in "The Conversation"
 
 #### Everyone
 
-*View the list of Nerds by clicking "The Nerd List."
-*View an individual's profile by clicking on it.
+* View the list of Nerds by clicking "The Nerd List."
+* View an individual's profile by clicking on it.
 
 ## **Lisence**
 
-####This is a project purely for academic purposes. All files are free to use and modify.
+#### This is a project purely for academic purposes. All files are free to use and modify.
