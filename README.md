@@ -2,7 +2,7 @@
 
 ### The Social Network for Nerds!
 
-This is a full-stack challenge I gave myself practice what I've learned about Node/Express, and React/Redux. It also utilizes a MongoDB database.
+This is a full-stack challenge I gave myself to practice what I've learned about Node/Express, and React/Redux. It also utilizes a MongoDB database.
 
 ## **Quickstart**
 
@@ -26,10 +26,11 @@ To run the app:
 *Make a profile with your preferred credentials.
 *Post and comment in "The Conversation"
 
-*#### Everyone
+#### Everyone
+
 *View the list of Nerds by clicking "The Nerd List."
-\*View an individual's profile by clicking on it.
+*View an individual's profile by clicking on it.
 
-### **Lisence**
+## **Lisence**
 
-This is a project purely for academic purposes. All files are free to use and modify.
+####This is a project purely for academic purposes. All files are free to use and modify.
