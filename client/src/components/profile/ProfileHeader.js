@@ -3,9 +3,8 @@ import isEmpty from '../../utils/validation/isEmpty';
 
 class ProfileHeader extends Component {
   render() {
-    const { profile, auth } = this.props;
-    console.log(profile.user.id);
-    console.log(auth.user.id);
+    const { profile } = this.props;
+
     return (
       <div>
         <div className="row">
