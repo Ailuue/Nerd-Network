@@ -101,7 +101,9 @@ class NavBar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar nav>
               <NavItem>
-                <NavLink to="/profiles">Fellow Nerds</NavLink>
+                <NavLink to="/profiles" tag={Link}>
+                  Fellow Nerds
+                </NavLink>
               </NavItem>
               {isAuthenticated ? posts : null}
             </Nav>
